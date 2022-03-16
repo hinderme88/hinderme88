@@ -1,0 +1,77 @@
+package recurringCharacter;
+
+import java.util.HashSet;
+import java.util.Scanner;
+import java.util.Set;
+
+/*
+ * 
+ * This is a program which will accept a user-inputted string,
+ * then search the string from left to right until
+ * it finds the first repeating character. It then outputs that
+ * string to the console. If there are no repeating characters,
+ * then it will output a message which states as much.
+ * 
+ * @author Mary Eakins
+ * date: 3/15/2022
+ * 
+ * */
+
+public class FindCharacter {
+
+	public static void main(String[] args) {
+
+		// Create scanner
+		Scanner scanner = new Scanner(System.in);
+
+		// Prompt user input
+		System.out.println("Please enter some text");
+
+		// Create scanner object and get user input
+		String user = scanner.nextLine();
+		
+		// Create variable to hold first recurring character
+		// and assign it to return value of 
+		// firstRecurringCharacter method
+		char recurringChar = firstRecurringCharacter(user);
+
+		// Close scanner to prevent memory leaks
+		scanner.close();
+		
+		// if statements to determine print statement
+		if (recurringChar != 0) {
+			System.out.println(recurringChar + " is the first recurring character.");
+
+		} else {
+			System.out.println("No repeating characters.");
+		}
+
+	}
+
+	// firstRecurringCharacter class with parameter being user input
+public static char firstRecurringCharacter(String user) {
+	
+	// Create a hashset in which to store characters
+	Set<Character> charSet = new HashSet<Character>();
+	
+	// for loop to iterate through user string
+	for (int i = 0; i < user.length(); i++) {
+		
+		// create ch variable and store current character
+		char ch = user.charAt(i);
+		
+		// if charSet contains current character, return ch
+		if(charSet.contains(ch)) {
+			return ch;
+		}
+		// if charSet doesn't contain current character
+		// add to charSet
+		else {
+			charSet.add(ch);
+		}
+		 
+	}
+	return 0;
+}
+
+}
